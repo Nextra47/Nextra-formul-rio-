@@ -1,0 +1,1023 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onboarding — NEXTRA</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #04080f;
+    --surface: #080f1c;
+    --surface2: #0d1626;
+    --border: #1a2540;
+    --accent: #E8192C;
+    --accent2: #ff3347;
+    --accent-blue: #1A56DB;
+    --accent-blue2: #3b73f5;
+    --text: #eef2ff;
+    --muted: #7a8aaa;
+    --danger: #E8192C;
+    --success: #4ead7a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 0 0 80px;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 0 #1A56DB44;
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .header-brand span:first-child {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--accent-blue2);
+    text-transform: uppercase;
+  }
+
+  .header-brand span:last-child {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .header-badge {
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 80px 40px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-blue2);
+    border: 1px solid var(--accent);
+    padding: 5px 12px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent-blue2);
+    text-shadow: 0 0 40px rgba(59,115,245,0.4);
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* PROGRESS */
+  .progress-wrap {
+    max-width: 760px;
+    margin: 0 auto 56px;
+    padding: 0 40px;
+  }
+
+  .progress-steps {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .progress-step {
+    height: 3px;
+    flex: 1;
+    background: var(--border);
+    border-radius: 2px;
+    transition: background 0.4s;
+  }
+
+  .progress-step.done { background: var(--accent-blue); }
+  .progress-step.active { background: var(--accent); }
+
+  .progress-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* FORM */
+  .form-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section {
+    margin-bottom: 64px;
+    display: none;
+    animation: fadeUp 0.4s ease;
+  }
+
+  .section.active { display: block; border-left: 3px solid var(--accent); padding-left: 24px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-blue2);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    line-height: 1.3;
+  }
+
+  /* FIELD */
+  .field {
+    margin-bottom: 28px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .field label span {
+    color: var(--accent);
+    margin-left: 2px;
+  }
+
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-color: var(--accent-blue2);
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: #444;
+  }
+
+  /* CHIPS */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .chip {
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--muted);
+    padding: 9px 18px;
+    border-radius: 2px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .chip:hover { border-color: var(--accent-blue); color: var(--text); }
+  .chip.selected { border-color: var(--accent-blue); background: rgba(26,86,219,0.15); color: var(--accent-blue2); font-weight: 500; }
+
+  /* GRID 2 */
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* RANGE */
+  .range-wrap { position: relative; }
+
+  .range-wrap input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+  }
+
+  .range-wrap input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .range-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent-blue2);
+    margin-top: 16px;
+    display: block;
+  }
+
+  /* RADIO CARDS */
+  .radio-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .radio-card {
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    border-radius: 4px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .radio-card:hover { border-color: var(--accent-blue); }
+  .radio-card.selected { border-color: var(--accent); background: rgba(232,25,44,0.10); }
+  .radio-card input { display: none; }
+
+  .radio-card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .radio-card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+
+  /* NAV BUTTONS */
+  .nav-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+  }
+
+  .btn-primary:hover { background: #c0101f; }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+
+  /* RESULT */
+  .result-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px;
+    margin-top: 20px;
+    display: none;
+  }
+
+  .result-box.show { display: block; }
+
+  .result-section {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .result-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .result-key {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-blue2);
+    margin-bottom: 8px;
+  }
+
+  .result-val {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .copy-btn {
+    display: block;
+    width: 100%;
+    margin-top: 28px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 16px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .copy-btn:hover { background: var(--accent2); }
+
+  .success-msg {
+    text-align: center;
+    padding: 60px 20px;
+    display: none;
+  }
+
+  .success-msg.show { display: block; }
+
+  .success-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  .success-msg h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .success-msg p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 20px; }
+    .hero { padding: 48px 20px 40px; }
+    .form-wrap, .progress-wrap { padding: 0 20px; }
+    .grid2, .radio-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">
+    <span><span style="color:#E8192C">N</span>EXTRA</span>
+    <span>Formulário de Onboarding</span>
+  </div>
+  <div class="header-badge">Formulário de Briefing</div>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">Briefing estratégico</div>
+  <h1>Vamos entender seu negócio <em>de verdade.</em></h1>
+  <p>Antes de rodar qualquer campanha, precisamos mapear seu cliente, seus produtos e seus objetivos. Preencha com calma — cada resposta impacta diretamente nos resultados.</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-steps" id="progressSteps"></div>
+  <div class="progress-label" id="progressLabel"></div>
+</div>
+
+<div class="form-wrap">
+
+  <!-- SEÇÃO 1: EMPRESA -->
+  <div class="section active" id="section-0">
+    <div class="section-label">01 — Empresa</div>
+    <div class="section-title">Dados da empresa</div>
+
+    <div class="grid2">
+      <div class="field">
+        <label>Nome da empresa <span>*</span></label>
+        <input type="text" id="nome_empresa" placeholder="Ex: Casa Nova Sob Medidas">
+      </div>
+      <div class="field">
+        <label>Cidade / Estado <span>*</span></label>
+        <input type="text" id="cidade" placeholder="Ex: Joinville, SC">
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label>Responsável pelo contato <span>*</span></label>
+        <input type="text" id="responsavel" placeholder="Nome completo">
+      </div>
+      <div class="field">
+        <label>WhatsApp de vendas <span>*</span></label>
+        <input type="tel" id="whatsapp" placeholder="(47) 99999-9999">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Site ou Instagram <span>*</span></label>
+      <input type="text" id="site" placeholder="instagram.com/casanova ou site.com.br">
+    </div>
+
+    <div class="field">
+      <label>Há quanto tempo a empresa está no mercado?</label>
+      <div class="chips" id="chips_tempo">
+        <div class="chip" data-val="menos1">Menos de 1 ano</div>
+        <div class="chip" data-val="1a3">1 a 3 anos</div>
+        <div class="chip" data-val="3a5">3 a 5 anos</div>
+        <div class="chip" data-val="mais5">Mais de 5 anos</div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-primary" onclick="nextSection()">Avançar →</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 2: PRODUTOS -->
+  <div class="section" id="section-1">
+    <div class="section-label">02 — Produtos</div>
+    <div class="section-title">O que vocês produzem e vendem?</div>
+
+    <div class="field">
+      <label>Quais ambientes/produtos vocês trabalham? <span>*</span> (selecione todos)</label>
+      <div class="chips" id="chips_produtos">
+        <div class="chip" data-val="cozinha">Cozinha planejada</div>
+        <div class="chip" data-val="closet">Closet</div>
+        <div class="chip" data-val="dormitorio">Dormitório</div>
+        <div class="chip" data-val="sala">Sala</div>
+        <div class="chip" data-val="home_theater">Home theater</div>
+        <div class="chip" data-val="home_office">Home office</div>
+        <div class="chip" data-val="banheiro">Banheiro/Gabinete</div>
+        <div class="chip" data-val="area_servico">Área de serviço</div>
+        <div class="chip" data-val="comercial">Comercial/Escritório</div>
+        <div class="chip" data-val="gourmet">Área gourmet</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Qual é o produto mais vendido hoje?</label>
+      <input type="text" id="produto_mais_vendido" placeholder="Ex: Cozinha planejada">
+    </div>
+
+    <div class="field">
+      <label>Material principal utilizado</label>
+      <div class="chips" id="chips_material">
+        <div class="chip" data-val="mdf">MDF</div>
+        <div class="chip" data-val="madeira_macica">Madeira maciça</div>
+        <div class="chip" data-val="misto">Misto (MDF + madeira)</div>
+        <div class="chip" data-val="outros">Outros</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Fabricação própria ou terceirizada?</label>
+      <div class="chips" id="chips_fabricacao">
+        <div class="chip" data-val="propria">100% própria</div>
+        <div class="chip" data-val="parcial">Parcialmente própria</div>
+        <div class="chip" data-val="terceirizada">Terceirizada</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Qual o prazo médio de entrega de um projeto?</label>
+      <div class="chips" id="chips_prazo">
+        <div class="chip" data-val="menos30">Menos de 30 dias</div>
+        <div class="chip" data-val="30a45">30 a 45 dias</div>
+        <div class="chip" data-val="45a60">45 a 60 dias</div>
+        <div class="chip" data-val="mais60">Mais de 60 dias</div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-ghost" onclick="prevSection()">← Voltar</button>
+      <button class="btn btn-primary" onclick="nextSection()">Avançar →</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 3: PÚBLICO -->
+  <div class="section" id="section-2">
+    <div class="section-label">03 — Público-alvo</div>
+    <div class="section-title">Quem é o cliente que compra de vocês?</div>
+
+    <div class="field">
+      <label>Perfil predominante do cliente <span>*</span></label>
+      <div class="radio-cards" id="radio_perfil">
+        <label class="radio-card" onclick="selectRadioCard(this, 'radio_perfil')">
+          <input type="radio" name="perfil" value="casal_novo">
+          <div class="radio-card-title">👫 Casal jovem / apartamento</div>
+          <div class="radio-card-desc">25–38 anos, primeiro imóvel, apartamento pequeno ou médio</div>
+        </label>
+        <label class="radio-card" onclick="selectRadioCard(this, 'radio_perfil')">
+          <input type="radio" name="perfil" value="familia_casa">
+          <div class="radio-card-title">🏠 Família com casa própria</div>
+          <div class="radio-card-desc">35–55 anos, reformando ou mobiliando casa nova</div>
+        </label>
+        <label class="radio-card" onclick="selectRadioCard(this, 'radio_perfil')">
+          <input type="radio" name="perfil" value="profissional">
+          <div class="radio-card-title">💼 Profissional liberal</div>
+          <div class="radio-card-desc">Dentistas, médicos, advogados — home office ou consultório</div>
+        </label>
+        <label class="radio-card" onclick="selectRadioCard(this, 'radio_perfil')">
+          <input type="radio" name="perfil" value="construtora">
+          <div class="radio-card-title">🏗️ Construtoras / Incorporadoras</div>
+          <div class="radio-card-desc">Projetos em volume para empreendimentos</div>
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Faixa de renda do cliente ideal</label>
+      <div class="chips" id="chips_renda">
+        <div class="chip" data-val="b">Classe B (renda família R$10k–20k)</div>
+        <div class="chip" data-val="a">Classe A (renda família acima R$20k)</div>
+        <div class="chip" data-val="bc">Classes B e C</div>
+        <div class="chip" data-val="todos">Atende todos os perfis</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Bairros / regiões onde estão os melhores clientes</label>
+      <input type="text" id="bairros" placeholder="Ex: América, Atiradores, Costa e Silva...">
+    </div>
+
+    <div class="field">
+      <label>De onde vêm os clientes hoje? (selecione os principais)</label>
+      <div class="chips" id="chips_origem">
+        <div class="chip" data-val="indicacao">Indicação</div>
+        <div class="chip" data-val="instagram">Instagram</div>
+        <div class="chip" data-val="google">Google</div>
+        <div class="chip" data-val="panfleto">Panfleto / Outdoor</div>
+        <div class="chip" data-val="loja_fisica">Loja física</div>
+        <div class="chip" data-val="whatsapp">WhatsApp direto</div>
+        <div class="chip" data-val="outros">Outros</div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-ghost" onclick="prevSection()">← Voltar</button>
+      <button class="btn btn-primary" onclick="nextSection()">Avançar →</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4: TICKET E METAS -->
+  <div class="section" id="section-3">
+    <div class="section-label">04 — Financeiro</div>
+    <div class="section-title">Números e metas</div>
+
+    <div class="field">
+      <label>Ticket médio por projeto <span>*</span></label>
+      <div class="chips" id="chips_ticket">
+        <div class="chip" data-val="ate3k">Até R$ 3.000</div>
+        <div class="chip" data-val="3a8k">R$ 3.000 – R$ 8.000</div>
+        <div class="chip" data-val="8a15k">R$ 8.000 – R$ 15.000</div>
+        <div class="chip" data-val="15a30k">R$ 15.000 – R$ 30.000</div>
+        <div class="chip" data-val="mais30k">Acima de R$ 30.000</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Quantos projetos fecham por mês hoje?</label>
+      <div class="chips" id="chips_projetos_mes">
+        <div class="chip" data-val="1a3">1 a 3</div>
+        <div class="chip" data-val="4a8">4 a 8</div>
+        <div class="chip" data-val="9a15">9 a 15</div>
+        <div class="chip" data-val="mais15">Mais de 15</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Meta de projetos por mês com tráfego pago</label>
+      <div class="chips" id="chips_meta">
+        <div class="chip" data-val="5">5 projetos/mês</div>
+        <div class="chip" data-val="10">10 projetos/mês</div>
+        <div class="chip" data-val="20">20 projetos/mês</div>
+        <div class="chip" data-val="mais20">Mais de 20/mês</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Orçamento mensal disponível para investimento em mídia (anúncios)</label>
+      <div class="chips" id="chips_orcamento">
+        <div class="chip" data-val="ate1k">Até R$ 1.000</div>
+        <div class="chip" data-val="1a2k">R$ 1.000 – R$ 2.000</div>
+        <div class="chip" data-val="2a5k">R$ 2.000 – R$ 5.000</div>
+        <div class="chip" data-val="mais5k">Acima de R$ 5.000</div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-ghost" onclick="prevSection()">← Voltar</button>
+      <button class="btn btn-primary" onclick="nextSection()">Avançar →</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 5: DIFERENCIAIS -->
+  <div class="section" id="section-4">
+    <div class="section-label">05 — Posicionamento</div>
+    <div class="section-title">O que faz vocês serem diferentes?</div>
+
+    <div class="field">
+      <label>Quais são os principais diferenciais da empresa? <span>*</span> (selecione todos)</label>
+      <div class="chips" id="chips_diferenciais">
+        <div class="chip" data-val="preco">Melhor preço da região</div>
+        <div class="chip" data-val="prazo_rapido">Prazo de entrega rápido</div>
+        <div class="chip" data-val="qualidade">Qualidade premium</div>
+        <div class="chip" data-val="atendimento">Atendimento personalizado</div>
+        <div class="chip" data-val="visita">Visita gratuita para medição</div>
+        <div class="chip" data-val="garantia">Garantia estendida</div>
+        <div class="chip" data-val="projeto_3d">Projeto 3D incluso</div>
+        <div class="chip" data-val="montagem">Montagem própria</div>
+        <div class="chip" data-val="financiamento">Aceita financiamento</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Em uma frase, como vocês descrevem o trabalho de vocês?</label>
+      <textarea id="frase_empresa" placeholder="Ex: A gente transforma qualquer espaço em ambiente que parece que foi feito pra você — porque foi."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Qual o maior problema que vocês resolvem para o cliente?</label>
+      <textarea id="problema_cliente" placeholder="Ex: Aproveitar espaços pequenos sem perder estética. Organizar a casa sem gastar com reforma."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Quem são os principais concorrentes locais que vocês percebem?</label>
+      <input type="text" id="concorrentes" placeholder="Ex: Marcenaria X, Loja Y, planejados Z...">
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-ghost" onclick="prevSection()">← Voltar</button>
+      <button class="btn btn-primary" onclick="nextSection()">Avançar →</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 6: CAMPANHAS -->
+  <div class="section" id="section-5">
+    <div class="section-label">06 — Campanhas</div>
+    <div class="section-title">Estratégia e canais</div>
+
+    <div class="field">
+      <label>Já rodou tráfego pago antes?</label>
+      <div class="chips" id="chips_experiencia">
+        <div class="chip" data-val="nunca">Nunca rodou</div>
+        <div class="chip" data-val="tentou">Tentou mas não funcionou</div>
+        <div class="chip" data-val="rodou">Sim, já rodou com resultados</div>
+        <div class="chip" data-val="rodando">Ainda está rodando</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Qual plataforma a empresa já usa ou quer usar? (selecione todos)</label>
+      <div class="chips" id="chips_plataformas">
+        <div class="chip" data-val="google">Google Ads</div>
+        <div class="chip" data-val="meta">Meta Ads (Facebook/Instagram)</div>
+        <div class="chip" data-val="gmn">Google Meu Negócio</div>
+        <div class="chip" data-val="tiktok">TikTok Ads</div>
+        <div class="chip" data-val="nao_sabe">Não sabe — quero indicação</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tem landing page ou site para receber o tráfego?</label>
+      <div class="chips" id="chips_lp">
+        <div class="chip" data-val="sim_site">Sim, tem site</div>
+        <div class="chip" data-val="sim_lp">Sim, tem landing page</div>
+        <div class="chip" data-val="nao">Não tem — precisa criar</div>
+        <div class="chip" data-val="whatsapp">Vai direto pro WhatsApp</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tem conteúdo (fotos/vídeos de projetos) disponível para usar nos anúncios?</label>
+      <div class="chips" id="chips_conteudo">
+        <div class="chip" data-val="muito">Bastante conteúdo</div>
+        <div class="chip" data-val="pouco">Pouco conteúdo</div>
+        <div class="chip" data-val="nenhum">Não tem — precisa produzir</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Observações / algo importante que a NEXTRA precisa saber</label>
+      <textarea id="obs" placeholder="Qualquer informação extra, restrição, contexto ou pedido especial..."></textarea>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-ghost" onclick="prevSection()">← Voltar</button>
+      <button class="btn btn-primary" onclick="generateResult()">Gerar briefing completo ✦</button>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="section active" id="section-result" style="display:none;">
+    <div class="section-label">Briefing gerado</div>
+    <div class="section-title">Resumo estratégico</div>
+    <div class="result-box show" id="result-box"></div>
+    <button class="copy-btn" onclick="copyResult()">📋 Copiar briefing completo</button>
+    <div style="margin-top:16px; text-align:center;">
+      <button class="btn btn-ghost" onclick="resetForm()" style="margin: 0 auto;">Preencher novamente</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentSection = 0;
+  const totalSections = 6;
+  const sectionTitles = ['Empresa', 'Produtos', 'Público', 'Financeiro', 'Posicionamento', 'Campanhas'];
+
+  // CHIPS single
+  const singleChips = ['chips_tempo','chips_material','chips_fabricacao','chips_prazo','chips_renda','chips_ticket','chips_projetos_mes','chips_meta','chips_orcamento','chips_experiencia','chips_lp','chips_conteudo'];
+  // CHIPS multi
+  const multiChips = ['chips_produtos','chips_origem','chips_diferenciais','chips_plataformas'];
+
+  document.querySelectorAll('.chips').forEach(group => {
+    const id = group.id;
+    const isMulti = multiChips.includes(id);
+    group.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        if (isMulti) {
+          chip.classList.toggle('selected');
+        } else {
+          group.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+        }
+      });
+    });
+  });
+
+  function selectRadioCard(el, groupId) {
+    document.querySelectorAll(`#${groupId} .radio-card`).forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('input').checked = true;
+  }
+
+  function updateProgress() {
+    const wrap = document.getElementById('progressSteps');
+    const label = document.getElementById('progressLabel');
+    wrap.innerHTML = '';
+    for (let i = 0; i < totalSections; i++) {
+      const s = document.createElement('div');
+      s.className = 'progress-step' + (i < currentSection ? ' done' : i === currentSection ? ' active' : '');
+      wrap.appendChild(s);
+    }
+    label.textContent = `Etapa ${currentSection + 1} de ${totalSections} — ${sectionTitles[currentSection]}`;
+  }
+
+  function showSection(idx) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById(`section-${idx}`);
+    if (el) { el.classList.add('active'); el.style.display = 'block'; }
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextSection() {
+    if (currentSection < totalSections - 1) {
+      document.getElementById(`section-${currentSection}`).style.display = 'none';
+      currentSection++;
+      showSection(currentSection);
+    }
+  }
+
+  function prevSection() {
+    if (currentSection > 0) {
+      document.getElementById(`section-${currentSection}`).style.display = 'none';
+      currentSection--;
+      showSection(currentSection);
+    }
+  }
+
+  function getChipVals(id) {
+    return [...document.querySelectorAll(`#${id} .chip.selected`)].map(c => c.textContent).join(', ') || '—';
+  }
+
+  function getRadioVal(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.closest('.radio-card').querySelector('.radio-card-title').textContent : '—';
+  }
+
+  function val(id) {
+    const el = document.getElementById(id);
+    return el && el.value.trim() ? el.value.trim() : '—';
+  }
+
+  async function submitToFormspree(data) {
+    try {
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value);
+      }
+      await fetch('https://formspree.io/f/mdawbpjj', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+    } catch(e) {
+      console.log('Formspree error:', e);
+    }
+  }
+
+  async function generateResult() {
+    const data = {
+      'Nome da empresa': val('nome_empresa'),
+      'Cidade': val('cidade'),
+      'Responsável': val('responsavel'),
+      'WhatsApp': val('whatsapp'),
+      'Site/Instagram': val('site'),
+      'Tempo de mercado': getChipVals('chips_tempo'),
+      'Produtos/Ambientes': getChipVals('chips_produtos'),
+      'Produto mais vendido': val('produto_mais_vendido'),
+      'Material': getChipVals('chips_material'),
+      'Fabricação': getChipVals('chips_fabricacao'),
+      'Prazo de entrega': getChipVals('chips_prazo'),
+      'Perfil do cliente': getRadioVal('perfil'),
+      'Faixa de renda': getChipVals('chips_renda'),
+      'Bairros/Regiões': val('bairros'),
+      'Origem dos clientes': getChipVals('chips_origem'),
+      'Ticket médio': getChipVals('chips_ticket'),
+      'Projetos/mês hoje': getChipVals('chips_projetos_mes'),
+      'Meta projetos/mês': getChipVals('chips_meta'),
+      'Orçamento em mídia': getChipVals('chips_orcamento'),
+      'Diferenciais': getChipVals('chips_diferenciais'),
+      'Frase da empresa': val('frase_empresa'),
+      'Problema que resolve': val('problema_cliente'),
+      'Concorrentes': val('concorrentes'),
+      'Experiência com tráfego': getChipVals('chips_experiencia'),
+      'Plataformas': getChipVals('chips_plataformas'),
+      'Landing page/Site': getChipVals('chips_lp'),
+      'Conteúdo disponível': getChipVals('chips_conteudo'),
+      'Observações': val('obs'),
+    };
+
+    const box = document.getElementById('result-box');
+    const sections = [
+      { title: '🏢 Empresa', keys: ['Nome da empresa','Cidade','Responsável','WhatsApp','Site/Instagram','Tempo de mercado'] },
+      { title: '🛠️ Produtos', keys: ['Produtos/Ambientes','Produto mais vendido','Material','Fabricação','Prazo de entrega'] },
+      { title: '👥 Público-alvo', keys: ['Perfil do cliente','Faixa de renda','Bairros/Regiões','Origem dos clientes'] },
+      { title: '💰 Financeiro', keys: ['Ticket médio','Projetos/mês hoje','Meta projetos/mês','Orçamento em mídia'] },
+      { title: '🏆 Posicionamento', keys: ['Diferenciais','Frase da empresa','Problema que resolve','Concorrentes'] },
+      { title: '📢 Campanhas', keys: ['Experiência com tráfego','Plataformas','Landing page/Site','Conteúdo disponível','Observações'] },
+    ];
+
+    box.innerHTML = sections.map(s => `
+      <div class="result-section">
+        <div class="result-key" style="font-size:14px;font-family:'Syne',sans-serif;font-weight:700;margin-bottom:16px;">${s.title}</div>
+        ${s.keys.map(k => `
+          <div style="margin-bottom:12px;">
+            <div class="result-key">${k}</div>
+            <div class="result-val">${data[k]}</div>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+
+    // esconde todas seções e mostra resultado
+    for (let i = 0; i < totalSections; i++) {
+      const el = document.getElementById(`section-${i}`);
+      if (el) el.style.display = 'none';
+    }
+
+    document.getElementById('progressLabel').textContent = '✦ Briefing completo gerado';
+    document.getElementById('progressSteps').querySelectorAll('.progress-step').forEach(s => {
+      s.className = 'progress-step done';
+    });
+
+    const result = document.getElementById('section-result');
+    result.style.display = 'block';
+    result.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // salva texto puro para copiar
+    result._rawData = sections.map(s =>
+      `${s.title}\n` + s.keys.map(k => `${k}: ${data[k]}`).join('\n')
+    ).join('\n\n');
+
+    // Envia pro Formspree (digitalnextra@gmail.com)
+    await submitToFormspree(data);
+  }
+
+  function copyResult() {
+    const result = document.getElementById('section-result');
+    const nomeEmpresa = document.getElementById('nome_empresa').value || "Cliente";
+      const header = `BRIEFING ESTRATÉGICO — NEXTRA × ${nomeEmpresa.toUpperCase()}\nData: ${new Date().toLocaleDateString('pt-BR')}\n\n`;
+    navigator.clipboard.writeText(header + result._rawData).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = '✓ Copiado com sucesso!';
+      setTimeout(() => btn.textContent = '📋 Copiar briefing completo', 2000);
+    });
+  }
+
+  function resetForm() {
+    location.reload();
+  }
+
+  // init
+  updateProgress();
+</script>
+</body>
+</html>
